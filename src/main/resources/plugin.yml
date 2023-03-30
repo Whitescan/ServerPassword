@@ -1,4 +1,4 @@
-name: ${prject.name}
+name: ${project.name}
 version: ${project.version}
 description: ${project.description}
 author: Whitescan

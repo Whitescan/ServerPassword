@@ -9,8 +9,9 @@ config:
   password-mode: default
   
   # Command to execute after the authentication succeded
+  # Use {PLAYER} to get the playername
   # Set '' to disable
-  after-auth-command: 'lp user {PLAYER} permission set serverpassword.allow true'
+  after-auth-command: ''
   
   # The password to your server
   # Set '' to disable
@@ -32,7 +33,7 @@ config:
 messages:
 
   # This prefix will be used for each message
-  prefix: '&8[&4ServerPassword&8]'
+  prefix: '&8[&4ServerPassword&8] '
   
   # Used to ask the Player to enter the Password
   authentification-prompt: '&ePlease enter the Server Password to authenticate!'

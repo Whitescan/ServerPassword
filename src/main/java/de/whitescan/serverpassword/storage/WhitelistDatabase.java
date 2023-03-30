@@ -1,5 +1,6 @@
 package de.whitescan.serverpassword.storage;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -21,13 +22,13 @@ public class WhitelistDatabase {
 
 	@NonNull
 	@Getter
-	private final String databaseName;
+	private final File database;
 
 	private Connection connection;
 
-	public WhitelistDatabase(Logger logger, String databaseName) {
+	public WhitelistDatabase(Logger logger, File database) {
 		this.logger = logger;
-		this.databaseName = databaseName;
+		this.database = database;
 		connect();
 	}
 
@@ -37,11 +38,11 @@ public class WhitelistDatabase {
 
 			if (connection != null) {
 				connection.close();
-				getLogger().info("Connection to database: " + getDatabaseName() + " was closed.");
+				getLogger().info("Connection to database: " + getDatabase().getName() + " was closed.");
 			}
 
 		} catch (SQLException e) {
-			getLogger().warning("Connection to database: " + getDatabaseName() + " could not close!");
+			getLogger().warning("Connection to database: " + getDatabase().getName() + " could not close!");
 			e.printStackTrace();
 		}
 
@@ -51,11 +52,11 @@ public class WhitelistDatabase {
 
 		try {
 
-			this.connection = DriverManager.getConnection("jdbc:sqlite:" + getDatabaseName() + ".db");
-			getLogger().info("Connection to database: " + getDatabaseName() + " was successful!");
+			this.connection = DriverManager.getConnection("jdbc:sqlite:" + getDatabase().getAbsolutePath());
+			getLogger().info("Connection to database: " + getDatabase().getName() + " was successful!");
 
 		} catch (Exception e) {
-			getLogger().severe("Connection to database: " + getDatabaseName()
+			getLogger().severe("Connection to database: " + getDatabase().getName()
 					+ " failed! Please check credentials before reporting this as an issue...");
 			e.printStackTrace();
 		}
@@ -70,7 +71,7 @@ public class WhitelistDatabase {
 				connect();
 
 		} catch (SQLException e) {
-			getLogger().severe("Could not retreive a connection from database: " + getDatabaseName()
+			getLogger().severe("Could not retreive a connection from database: " + getDatabase().getName()
 					+ "! This is most likely a follow up error.");
 			e.printStackTrace();
 		}

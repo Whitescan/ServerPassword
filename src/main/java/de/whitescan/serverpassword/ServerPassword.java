@@ -105,7 +105,7 @@ public class ServerPassword extends JavaPlugin {
 			getLogger().warning("Max Password attempts have been set to 1 since it can't go lower then that...");
 		}
 
-		this.prefix = getConfig().getString("messages.prefix", "&8[&4ServerPassword&8]").replace("&", "§");
+		this.prefix = getConfig().getString("messages.prefix", "&8[&4ServerPassword&8] ").replace("&", "§");
 		this.authenticationPromptMessage = getConfig()
 				.getString("messages.authentification-prompt", "&ePlease enter the Server Password to authenticate!")
 				.replace("&", "§");
@@ -133,7 +133,7 @@ public class ServerPassword extends JavaPlugin {
 		}
 
 		if (getMode() == PasswordMode.WHITELIST) {
-			this.whitelistDatabase = new WhitelistDatabase(getLogger(), "whitelist");
+			this.whitelistDatabase = new WhitelistDatabase(getLogger(), new File(getDataFolder(), "whitelist.db"));
 			this.whitelistDAO = new WhitelistDAO(getWhitelistDatabase());
 		}
 
