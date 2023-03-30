@@ -1,0 +1,11 @@
+name: ${prject.name}
+version: ${project.version}
+description: ${project.description}
+author: Whitescan
+api-version: 1.19
+main: de.whitescan.serverpassword.ServerPassword
+
+permissions:
+  serverpassword.allow:
+    description: Allow players to access the server without password
+    default: op

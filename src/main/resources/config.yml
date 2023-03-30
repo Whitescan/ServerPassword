@@ -1,0 +1,47 @@
+# ServerPassword Config
+config:
+
+  # The Mode Server Password is being handled
+  # 
+  # default: ask for the password on each join
+  # whitelist: save who already entered the password
+  # permission: only ask players without the serverpassword.allow permission to enter the password
+  password-mode: default
+  
+  # Command to execute after the authentication succeded
+  # Set '' to disable
+  after-auth-command: 'lp user {PLAYER} permission set serverpassword.allow true'
+  
+  # The password to your server
+  # Set '' to disable
+  password: ''
+  
+  # The maximum amount of trys before being kicked.
+  # Use 1 for no attempts.
+  #
+  # Please Note:
+  # No ban mechanic has been implemented at this point.
+  # However, rejoining too quickly will get the Player throttled.
+  #
+  max-password-attempts: 3
+  
+  # Do you want tips on how to set this up?
+  tips: true
+
+# ServerPassword Messages for customization & translation
+messages:
+
+  # This prefix will be used for each message
+  prefix: '&8[&4ServerPassword&8]'
+  
+  # Used to ask the Player to enter the Password
+  authentification-prompt: '&ePlease enter the Server Password to authenticate!'
+  
+  # Used if the Password was incorrect
+  authentification-failed: '&cFailed to verify password, please try again...'
+  
+  # Used when the Player entered the correct password
+  authentification-success: '&aSuccessfully authenticated!'
+  
+  # Used when the Player is kicked from the server because he failed all Password attempts
+  exceeded-max-attempts: '&cYou exceeded the maximum amount of Password attempts!'
